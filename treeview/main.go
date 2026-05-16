@@ -1,10 +1,12 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
 	"sort"
+	"strings"
 )
 
 var defaultExclude = map[string]bool{
@@ -22,12 +24,31 @@ var defaultExclude = map[string]bool{
 }
 
 func main() {
+	excludeFlag := flag.String("exclude", "", "Comma-separated names to exclude")
+	noDefaultExclude := flag.Bool("no-default-exclude", false, "Disable default exclusions")
+	flag.Parse()
+
 	path := "."
-	if len(os.Args) > 1 {
-		path = os.Args[1]
+	if flag.NArg() > 0 {
+		path = flag.Arg(0)
 	}
 
-	printTree(path, "", defaultExclude)
+	exclude := make(map[string]bool)
+	if !*noDefaultExclude {
+		for name := range defaultExclude {
+			exclude[name] = true
+		}
+	}
+
+	for _, name := range strings.Split(*excludeFlag, ",") {
+		name = strings.TrimSpace(name)
+		if name == "" {
+			continue
+		}
+		exclude[name] = true
+	}
+
+	printTree(path, "", exclude)
 }
 
 func printTree(basePath, indent string, exclude map[string]bool) {

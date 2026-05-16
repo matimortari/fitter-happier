@@ -8,15 +8,23 @@ A collection of small, standalone CLI utilities written in pure Go. Each tool is
 
 ### `treeview`
 
-Displays a directory tree structure, excluding common development folders.
+Displays a directory tree structure, excluding common development folders by default.
 
 **Usage:**
 ```bash
-treeview [path]
+treeview [path] [flags]
 ```
 
 - `path` — directory to display (leave empty for current directory)
-- Excludes clutter folders like `node_modules`, `vendor`, `.git`, etc.
+- `-exclude` — comma-separated names to exclude (adds to defaults)
+- `-no-default-exclude` — disable default exclusions
+
+**Examples:**
+```bash
+treeview
+treeview . -exclude "coverage,tmp"
+treeview . -no-default-exclude -exclude ".git,node_modules"
+```
 
 ---
 
