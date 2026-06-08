@@ -40,12 +40,18 @@ func main() {
 		}
 	}
 
-	for _, name := range strings.Split(*excludeFlag, ",") {
-		name = strings.TrimSpace(name)
-		if name == "" {
-			continue
+	if *excludeFlag != "" {
+		for _, name := range strings.Split(*excludeFlag, ",") {
+			name = strings.TrimSpace(name)
+			if name != "" {
+				exclude[name] = true
+			}
 		}
-		exclude[name] = true
+	}
+
+	if _, err := os.Stat(path); err != nil {
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		os.Exit(1)
 	}
 
 	printTree(path, "", exclude)
@@ -62,7 +68,6 @@ func printTree(basePath, indent string, exclude map[string]bool) {
 		if exclude[entry.Name()] {
 			continue
 		}
-
 		filtered = append(filtered, entry)
 	}
 
