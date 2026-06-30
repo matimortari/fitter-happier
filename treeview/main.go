@@ -10,17 +10,89 @@ import (
 )
 
 var defaultExclude = map[string]bool{
-	"node_modules": true,
+	// VCS
+	".git": true,
+	".hg":  true,
+	".svn": true,
+
+	// JS / TS
+	"node_modules":     true,
+	"bower_components": true,
+	".next":            true,
+	".nuxt":            true,
+	".output":          true,
+	".svelte-kit":      true,
+	".angular":         true,
+	".turbo":           true,
+	".vercel":          true,
+	".parcel-cache":    true,
+	".yarn":            true,
+	".pnpm-store":      true,
+
+	// Python
+	"__pycache__":   true,
+	".venv":         true,
+	"venv":          true,
+	".tox":          true,
+	".pytest_cache": true,
+	".mypy_cache":   true,
+	".ruff_cache":   true,
+	".eggs":         true,
+	"htmlcov":       true,
+	"site-packages": true,
+
+	// Ruby / PHP
+	".bundle": true,
+	"vendor":  true,
+
+	// Java / Kotlin / Scala / Rust / C++
+	"target":              true,
+	".gradle":             true,
+	".bloop":              true,
+	".metals":             true,
+	"cmake-build-debug":   true,
+	"cmake-build-release": true,
+	"CMakeFiles":          true,
+
+	// .NET
+	"bin":      true,
+	"obj":      true,
+	"packages": true,
+	".vs":      true,
+
+	// Elixir / Erlang
+	"_build":     true,
+	"deps":       true,
+	".elixir_ls": true,
+
+	// Haskell
+	".stack-work":   true,
+	"dist-newstyle": true,
+
+	// Swift / Dart / Flutter
+	".build":      true,
+	"DerivedData": true,
+	"Pods":        true,
+	".swiftpm":    true,
+	".dart_tool":  true,
+	".pub-cache":  true,
+
+	// Terraform / misc tooling
+	".terraform": true,
+	".direnv":    true,
+	".cache":     true,
+	".idea":      true,
+
+	// Common build / output / logs
 	"dist":         true,
-	".git":         true,
-	".nuxt":        true,
-	".next":        true,
-	".output":      true,
-	".venv":        true,
 	"out":          true,
 	"build":        true,
-	"bin":          true,
-	"obj":          true,
+	"coverage":     true,
+	"tmp":          true,
+	"temp":         true,
+	"log":          true,
+	"logs":         true,
+	"test-results": true,
 }
 
 func main() {
