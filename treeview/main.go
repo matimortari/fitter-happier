@@ -21,6 +21,12 @@ var defaultExclude = map[string]bool{
 	"build":        true,
 	"bin":          true,
 	"obj":          true,
+	"coverage":     true,
+	"tmp":          true,
+	"temp":         true,
+	"log":          true,
+	"logs":         true,
+	"test-results": true,
 }
 
 func main() {
