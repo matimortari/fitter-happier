@@ -60,6 +60,30 @@ genkey      # 32 bytes → 44-char base64 string
 genkey 64   # 64 bytes → 88-char base64 string
 ```
 
+---
+
+### `timer`
+
+Stopwatch (no args) or countdown (with a duration). Updates in place; Ctrl+C stops.
+
+**Usage:**
+
+```bash
+timer [duration]
+```
+
+- no args — stopwatch until Ctrl+C
+- `duration` — Go duration (`10s`, `5m`, `1h30m`) or bare seconds (`90`)
+
+**Examples:**
+
+```bash
+timer        # stopwatch
+timer 25s    # countdown 25 seconds
+timer 5m     # countdown 5 minutes
+timer 90     # countdown 90 seconds
+```
+
 ## Contact
 
 Feel free to reach out to discuss collaboration opportunities or to say hello!
