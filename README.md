@@ -84,6 +84,21 @@ timer 5m     # countdown 5 minutes
 timer 90     # countdown 90 seconds
 ```
 
+---
+
+### `filesize`
+
+Prints the size of files or directories (directories are summed recursively). Human-readable by default; does not follow symlinks. A single path prints only the size; multiple paths print `path` then size.
+
+**Usage:**
+
+```bash
+filesize [path...] [flags]
+```
+
+- `path` — file or directory (default: current directory)
+- `-bytes` — print size in bytes instead of human-readable units
+
 ## Contact
 
 Feel free to reach out to discuss collaboration opportunities or to say hello!
