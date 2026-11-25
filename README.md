@@ -4,22 +4,35 @@ _Fitter, happier, more productive, A pig in a cage on antibiotics._
 
 A collection of small, standalone CLI utilities written in pure Go. Each tool is designed to solve a specific problem without external dependencies, making them easy to build and use across different platforms.
 
+## Build and Install
+
+Each tool is its own Go module. From the repo root:
+
+```bash
+go -C <name> build -o bin/<name> .
+go -C <name> install .
+```
+
+`go install` puts the binary in `$(go env GOPATH)/bin` (usually `~/go/bin`) — keep that on your `PATH`.
+
 ## Tools
 
 ### `treeview`
 
-Displays a directory tree structure, excluding common development folders by default.
+Displays a directory tree, excluding common development folders by default.
 
 **Usage:**
+
 ```bash
 treeview [path] [flags]
 ```
 
-- `path` — directory to display (leave empty for current directory)
+- `path` — directory to display (default: current directory)
 - `-exclude` — comma-separated names to exclude (adds to defaults)
 - `-no-default-exclude` — disable default exclusions
 
 **Examples:**
+
 ```bash
 treeview
 treeview . -exclude "coverage,tmp"
@@ -30,38 +43,23 @@ treeview . -no-default-exclude -exclude ".git,node_modules"
 
 ### `genkey`
 
-Generates a cryptographically secure random key, encoded as base64. Equivalent to `openssl rand -base64`.
+Generates cryptographically secure random bytes as Base64. Equivalent to `openssl rand -base64`.
 
 **Usage:**
+
 ```bash
 genkey [bytes]
 ```
 
-- `bytes` — number of random bytes to generate (default: `32`)
-- Output is a base64-encoded string printed to stdout
+- `bytes` — number of random bytes (default: `32`)
 
 **Examples:**
-```bash
-genkey        # 32 bytes default → 44-char base64 string
-genkey 64     # 64 bytes → 88-char base64 string
-```
-
----
-
-## Building
-
-Each tool is a self-contained binary with no external dependencies. Build any of them with:
 
 ```bash
-go build -o <name> ./<name>
+genkey      # 32 bytes → 44-char base64 string
+genkey 64   # 64 bytes → 88-char base64 string
 ```
 
-Or install directly to your Go bin:
-
-```bash
-go install ./<name>
-```
-  
 ## Contact
 
 Feel free to reach out to discuss collaboration opportunities or to say hello!
